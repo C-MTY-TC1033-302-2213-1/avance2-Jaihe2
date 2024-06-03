@@ -1,11 +1,9 @@
-
 /*
 - Nombre: Jaime Hernandez Gonzalez
 - Matricula: A00840312
 - Carrera: ITC
 - Fecha: 22/05/2024
 - ¿Qué aprendí en el desarrollo de esta clase?
-  Aprendí a implementar y manejar clases con polimorfismo en C++.
 */
 
 #ifndef POLIMORFISMO_H
@@ -26,14 +24,12 @@ class Polimorfismo {
 private:
     Video* arrPtrVideos[MAX_VIDEOS];
     int cantidad;
-    Serie* arrPtrSeries[MAX_VIDEOS];
-    Pelicula* arrPtrPeliculas[MAX_VIDEOS];
     int cantidadSeries;
     int cantidadPeliculas;
 
 public:
     Polimorfismo();
-    void leerArchivo(const std::string& _nombre);
+    void leerArchivo(const std::string& nombre);
 
     void setPtrVideo(int index, Video* video);
     void setCantidadVideos(int _cantidad);

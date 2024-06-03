@@ -4,15 +4,19 @@
 - Carrera: ITC
 - Fecha: 22/05/2024
 - ¿Qué aprendí en el desarrollo de esta clase?
+  Aprendí a implementar y manejar clases con polimorfismo en C++.
 */
 
 #include "Polimorfismo.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <typeinfo>
 
 Polimorfismo::Polimorfismo() : cantidad(0), cantidadSeries(0), cantidadPeliculas(0) {
     for (int i = 0; i < MAX_VIDEOS; ++i) {
         arrPtrVideos[i] = nullptr;
-        arrPtrSeries[i] = nullptr;
-        arrPtrPeliculas[i] = nullptr;
     }
 }
 
@@ -119,6 +123,8 @@ void Polimorfismo::reporteSeries() {
 }
 
 void Polimorfismo::leerArchivo(const std::string& nombre) {
+    Serie* arrPtrSeries[MAX_VIDEOS];
+    Pelicula* arrPtrPeliculas[MAX_VIDEOS];
     std::fstream entrada;
     std::string row[7];
     std::string line, word;

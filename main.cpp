@@ -1,25 +1,19 @@
 //
-//  main.cpp
-//  Avance2 31/05/24
+// main.cpp
+// Tarea3 y Actividad Presencial 23/05/24
 //
-//  Created by Ma. Guadalupe Roque Díaz de León on 31/05/24.
+// Created by Ma. Guadalupe Roque Díaz de León on 23/05/24.
 //
-
-// Clases Base - Video - con método virtual str() para Poliformismo
+// Clases Base - Video - con método virtual str() para Polimorfismo
 // Clases Derivadas - Pelicula, Serie
 // Clase usada para composición - Episodio
-// Clase Polimorfismo -  para aplicar el polimorfismo con el método virtual y las clases derivadas
 // Arreglo de apuntadores
-
-
 /*
-Añade por favor en cada clase este comentario con toda tu información 
 Nombre:
 Matricula:
 Carrera:
-Fecha: 
-Reflexión:
-- ¿Qué aprendí en el desarrollo de esta clase?
+Fecha:
+- ¿Qué aprendí en el desarrollo de la clase Polimorfismo?
 */
 
 #include <iostream>
@@ -28,44 +22,39 @@ Reflexión:
 #include "Pelicula.h"
 #include "Serie.h"
 #include "Polimorfismo.h"
-
 #include <string>
+
 using namespace std;
 
-void polimorfismo(Polimorfismo inventario){
-  // Declaración de variables locales
- int opcion, oscares, cantidadEpisodios;
- double calificacion;
- string genero;
+void polimorfismo(Polimorfismo inventario) {
+    // Declaración de variables locales
+    int opcion;
+    double calificacion;
+    string genero;
 
- cin >> opcion;
+    cin >> opcion;
 
- switch (opcion) {
-     case 1:
-         cin >> calificacion;
-         inventario.reporteCalificacion(calificacion);
-         break;
-
-     case 2:
-         cin >> genero;
-         inventario.reporteGenero(genero);
-         break;
-
-     case 3:
-         inventario.reporteInventario();
-         break;
-
-     case 4:
-         inventario.reportePeliculas();
-         break;
-
-     case 5:
-         inventario.reporteSeries();
-         break;
-
-    default:
-         cout << "Error\n";
-         break;
+    switch (opcion) {
+        case 1:
+            cin >> calificacion;
+            inventario.reporteCalificacion(calificacion);
+            break;
+        case 2:
+            cin >> genero;
+            inventario.reporteGenero(genero);
+            break;
+        case 3:
+            inventario.reporteInventario();
+            break;
+        case 4:
+            inventario.reportePeliculas();
+            break;
+        case 5:
+            inventario.reporteSeries();
+            break;
+        default:
+            cout << "Error\n";
+            break;
     }
 }
 
@@ -77,19 +66,17 @@ int main() {
     // leer la opcion
     cin >> opcion;
 
-    switch (opcion){
+    switch (opcion) {
         case 1:
-           neflix.leerArchivo("Inventario1.csv");
-           polimorfismo(neflix);
-           break;
-
+            neflix.leerArchivo("Inventario1.csv");
+            polimorfismo(neflix);
+            break;
         case 2:
-          neflix.leerArchivo("Inventario2.csv");
-          polimorfismo(neflix);
-          break;
-
-    default:
-          cout << "incorrecta" ;
+            neflix.leerArchivo("Inventario2.csv");
+            polimorfismo(neflix);
+            break;
+        default:
+            cout << "incorrecta" << endl;
     }
 
     return 0;
