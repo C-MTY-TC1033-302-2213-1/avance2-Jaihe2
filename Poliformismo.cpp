@@ -1,39 +1,38 @@
-/*
-- Nombre: Jaime Hernandez Gonzalez
-- Matricula: A00840312
-- Carrera: ITC
-- Fecha: 22/05/2024
-- ¿Qué aprendí en el desarrollo de esta clase?
-  Aprendí a implementar y manejar clases con polimorfismo en C++.
-*/
+// Polimorfismo.cpp
+// Nombre: Jaime Hernandez Gonzalez
+// Matricula: A00840312
+// Carrera: ITC
+// Fecha: 22/05/2024
+// Reflexión: Aprendí a implementar y manejar polimorfismo en C++, así como a gestionar un inventario utilizando un arreglo de punteros a objetos de distintas clases derivadas.
 
 #include "Polimorfismo.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <typeinfo>
 
 Polimorfismo::Polimorfismo() : cantidad(0), cantidadSeries(0), cantidadPeliculas(0) {
     for (int i = 0; i < MAX_VIDEOS; ++i) {
         arrPtrVideos[i] = nullptr;
     }
+    for (int i = 0; i < MAX_SERIES; ++i) {
+        arrPtrSeries[i] = nullptr;
+    }
+    for (int i = 0; i < MAX_PELICULAS; ++i) {
+        arrPtrPeliculas[i] = nullptr;
+    }
 }
 
 void Polimorfismo::setPtrVideo(int index, Video* video) {
-    if (index >= 0 && index < MAX_VIDEOS) {
+    if (index >= 0 && index < cantidad) {
         arrPtrVideos[index] = video;
     }
 }
 
 void Polimorfismo::setCantidadVideos(int _cantidad) {
-    if (_cantidad >= 0 && _cantidad <= MAX_VIDEOS) {
+    if (_cantidad >= 0 && _cantidad < MAX_VIDEOS) {
         cantidad = _cantidad;
     }
 }
 
 Video* Polimorfismo::getPtrVideo(int index) {
-    if (index >= 0 && index < MAX_VIDEOS) {
+    if (index >= 0 && index < cantidad) {
         return arrPtrVideos[index];
     }
     return nullptr;
@@ -44,17 +43,14 @@ int Polimorfismo::getCantidad() {
 }
 
 void Polimorfismo::reporteInventario() {
-    int contPeliculas = 0;
-    int contSeries = 0;
+    int contPeliculas = 0, contSeries = 0;
 
     for (int i = 0; i < cantidad; ++i) {
-        if (arrPtrVideos[i] != nullptr) {
-            std::cout << arrPtrVideos[i]->str() << std::endl;
-            if (dynamic_cast<Pelicula*>(arrPtrVideos[i])) {
-                ++contPeliculas;
-            } else if (dynamic_cast<Serie*>(arrPtrVideos[i])) {
-                ++contSeries;
-            }
+        std::cout << arrPtrVideos[i]->str() << std::endl;
+        if (typeid(*arrPtrVideos[i]) == typeid(Pelicula)) {
+            contPeliculas++;
+        } else if (typeid(*arrPtrVideos[i]) == typeid(Serie)) {
+            contSeries++;
         }
     }
 
@@ -66,9 +62,9 @@ void Polimorfismo::reporteCalificacion(double _calificacion) {
     int total = 0;
 
     for (int i = 0; i < cantidad; ++i) {
-        if (arrPtrVideos[i] != nullptr && arrPtrVideos[i]->getCalificacion() == _calificacion) {
+        if (arrPtrVideos[i]->getCalificacion() == _calificacion) {
             std::cout << arrPtrVideos[i]->str() << std::endl;
-            ++total;
+            total++;
         }
     }
 
@@ -79,9 +75,9 @@ void Polimorfismo::reporteGenero(const std::string& _genero) {
     int total = 0;
 
     for (int i = 0; i < cantidad; ++i) {
-        if (arrPtrVideos[i] != nullptr && arrPtrVideos[i]->getGenero() == _genero) {
+        if (arrPtrVideos[i]->getGenero() == _genero) {
             std::cout << arrPtrVideos[i]->str() << std::endl;
-            ++total;
+            total++;
         }
     }
 
@@ -91,28 +87,24 @@ void Polimorfismo::reporteGenero(const std::string& _genero) {
 void Polimorfismo::reportePeliculas() {
     int contPeliculas = 0;
 
-    for (int i = 0; i < cantidad; ++i) {
-        if (arrPtrVideos[i] != nullptr && dynamic_cast<Pelicula*>(arrPtrVideos[i])) {
-            std::cout << arrPtrVideos[i]->str() << std::endl;
-            ++contPeliculas;
-        }
+    for (int i = 0; i < cantidadPeliculas; ++i) {
+        std::cout << arrPtrPeliculas[i]->str() << std::endl;
+        contPeliculas++;
     }
 
     if (contPeliculas > 0) {
         std::cout << "Total Peliculas = " << contPeliculas << std::endl;
     } else {
-        std::cout << "No peliculas" << std::endl;
+        std::cout << "No Peliculas" << std::endl;
     }
 }
 
 void Polimorfismo::reporteSeries() {
     int contSeries = 0;
 
-    for (int i = 0; i < cantidad; ++i) {
-        if (arrPtrVideos[i] != nullptr && dynamic_cast<Serie*>(arrPtrVideos[i])) {
-            std::cout << arrPtrVideos[i]->str() << std::endl;
-            ++contSeries;
-        }
+    for (int i = 0; i < cantidadSeries; ++i) {
+        std::cout << arrPtrSeries[i]->str() << std::endl;
+        contSeries++;
     }
 
     if (contSeries > 0) {
@@ -123,15 +115,13 @@ void Polimorfismo::reporteSeries() {
 }
 
 void Polimorfismo::leerArchivo(const std::string& nombre) {
-    Serie* arrPtrSeries[MAX_VIDEOS];
-    Pelicula* arrPtrPeliculas[MAX_VIDEOS];
-    std::fstream entrada;
+    fstream entrada;
     std::string row[7];
     std::string line, word;
     int iR = 0, index;
     double promedio;
 
-    entrada.open(nombre, std::ios::in);
+    entrada.open(nombre, ios::in);
 
     if (!entrada.is_open()) {
         std::cerr << "Error al abrir el archivo: " << nombre << std::endl;
@@ -147,28 +137,28 @@ void Polimorfismo::leerArchivo(const std::string& nombre) {
         }
 
         if (row[0] == "P") {
-            arrPtrPeliculas[cantidadPeliculas] = new Pelicula(row[1], row[2], std::stoi(row[3]), row[4], std::stod(row[5]), std::stoi(row[6]));
+            arrPtrPeliculas[cantidadPeliculas] = new Pelicula(row[1], row[2], stoi(row[3]), row[4], stod(row[5]), stoi(row[6]));
             std::cout << "Pelicula: " << arrPtrPeliculas[cantidadPeliculas]->str() << std::endl;
             cantidadPeliculas++;
         } else if (row[0] == "S") {
-            arrPtrSeries[cantidadSeries] = new Serie(row[1], row[2], std::stoi(row[3]), row[4], std::stod(row[5]));
+            arrPtrSeries[cantidadSeries] = new Serie(row[1], row[2], stoi(row[3]), row[4], stod(row[5]));
             std::cout << "Serie: " << arrPtrSeries[cantidadSeries]->str() << std::endl;
             cantidadSeries++;
         } else if (row[0] == "E") {
-            index = std::stoi(row[1]) - 500;
-            arrPtrSeries[index]->agregaEpisodio(Episodio(row[2], std::stoi(row[3]), std::stoi(row[4])));
+            index = stoi(row[1]) - 500;
+            arrPtrSeries[index]->agregaEpisodio(Episodio(row[2], stoi(row[3]), stoi(row[4])));
             std::cout << "Episodio: " << arrPtrSeries[index]->str() << std::endl;
         }
     }
 
-    for (int i = 0; i < cantidadSeries; ++i) {
+    for (int i = 0; i < cantidadSeries; i++) {
         promedio = arrPtrSeries[i]->calculaPromedio();
         arrPtrSeries[i]->setCalificacion(promedio);
         arrPtrSeries[i]->calculaDuracion();
         arrPtrVideos[cantidad++] = arrPtrSeries[i];
     }
 
-    for (int i = 0; i < cantidadPeliculas; ++i) {
+    for (int i = 0; i < cantidadPeliculas; i++) {
         arrPtrVideos[cantidad++] = arrPtrPeliculas[i];
     }
 
