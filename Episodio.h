@@ -1,29 +1,40 @@
-// Episodio.h
-// Nombre: [Tu Nombre]
-// Matricula: [Tu Matrícula]
-// Carrera: [Tu Carrera]
-// Fecha: [Fecha]
-// Reflexión:
-// - ¿Qué aprendí en el desarrollo de esta clase?
+/*
+- Nombre: Jaime Hernandez Gonzalez
+- Matricula: A00840312
+- Carrera: ITC
+- Fecha: 22/05/2024
+- ¿Qué aprendí en el desarrollo de esta clase?
+  Aprendí a crear clases específicas con sus propios atributos y métodos.
+*/
 
 #ifndef EPISODIO_H
 #define EPISODIO_H
 
 #include <string>
-using namespace std;
 
 class Episodio {
 private:
-    string titulo;
-    int temporada;
+    std::string titulo;
+    int duracion;
+    int calificacion;
 
 public:
-    Episodio(string titulo, int temporada)
-        : titulo(titulo), temporada(temporada) {}
+    // Constructores
+    Episodio();
+    Episodio(std::string _titulo, int _duracion, int _calificacion);
 
-    string str() const {
-        return titulo + " " + to_string(temporada);
-    }
+    // Métodos modificadores
+    void setTitulo(std::string _titulo);
+    void setDuracion(int _duracion);
+    void setCalificacion(int _calificacion);
+
+    // Métodos de acceso
+    std::string getTitulo() const;
+    int getDuracion() const;
+    int getCalificacion() const;
+
+    // Método adicional
+    std::string str() const;
 };
 
 #endif
