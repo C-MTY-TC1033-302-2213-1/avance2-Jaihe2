@@ -1,41 +1,20 @@
-/*
-- Nombre: Jaime Hernandez Gonzalez
-- Matricula: A00840312
-- Carrera: ITC
-- Fecha: 22/05/2024
-- ¿Qué aprendí en el desarrollo de esta clase?
-  Aprendí a utilizar la composición y cómo una clase puede contener objetos de otra clase.
-*/
-
 #ifndef SERIE_H
 #define SERIE_H
 
 #include "Video.h"
 #include "Episodio.h"
+#include <vector>
 
 class Serie : public Video {
 private:
-    Episodio episodios[5];
-    int cantidad;
+    std::vector<Episodio> episodios;
 
 public:
-    // Constructor
-    Serie();
-    Serie(std::string _ID, std::string _titulo, int _duracion, std::string _genero, double _calificacionPromedio);
-
-    // Métodos modificadores
-    void setEpisodio(int index, Episodio episodio);
-    void setCantidad(int _cantidad);
-
-    // Métodos de acceso
-    Episodio getEpisodio(int index) const;
-    int getCantidad() const;
-
-    // Métodos adicionales
-    double calculaPromedio() const;
+    Serie(std::string _id, std::string _nombre, int _duracion, std::string _genero, double _calificacion);
+    void agregaEpisodio(const Episodio& episodio);
+    double calculaPromedio();
     void calculaDuracion();
-    std::string str() const;
-    void agregaEpisodio(Episodio episodio);
+    std::string str() const override;
 };
 
 #endif
