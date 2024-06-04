@@ -1,8 +1,8 @@
 /*
-Nombre: Jaime Hernández González
-Carrera: ITC
-Matrícula: A00840312
-Fecha: 20/05/2024
+Nombre: Pedro Valdez Flores
+Matricula: A00838331
+Carrera: IDM
+Fecha: 2/junio/2024 
 */
 #include "Polimorfismo.h"
 #include <fstream>
