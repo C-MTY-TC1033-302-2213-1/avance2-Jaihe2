@@ -1,19 +1,8 @@
-//
-// main.cpp
-// Tarea3 y Actividad Presencial 23/05/24
-//
-// Created by Ma. Guadalupe Roque Díaz de León on 23/05/24.
-//
-// Clases Base - Video - con método virtual str() para Polimorfismo
-// Clases Derivadas - Pelicula, Serie
-// Clase usada para composición - Episodio
-// Arreglo de apuntadores
 /*
-Nombre:
-Matricula:
-Carrera:
-Fecha:
-- ¿Qué aprendí en el desarrollo de la clase Polimorfismo?
+Nombre: Jaime Hernández González
+Carrera: ITC
+Matrícula: A00840312
+Fecha: 20/05/2024
 */
 
 #include <iostream>
@@ -21,63 +10,29 @@ Fecha:
 #include "Episodio.h"
 #include "Pelicula.h"
 #include "Serie.h"
-#include "Polimorfismo.h"
-#include <string>
 
 using namespace std;
 
-void polimorfismo(Polimorfismo inventario) {
-    // Declaración de variables locales
-    int opcion;
-    double calificacion;
-    string genero;
+int main(){
+    Video video("01", "Mavericks", 90, "Deportes", 100);
+    Pelicula pelicula1("Batman", "The Dark Knight", 81, "Accion", 180, 2);
+    Pelicula peli("Simios", "Ceasear", 190, "Accion", 100, 6);
 
-    cin >> opcion;
+    Serie serie1;
+    Episodio episodio1("1.Uno", 53, 100);
+    Episodio episodio2("2.Dos", 78, 100);
 
-    switch (opcion) {
-        case 1:
-            cin >> calificacion;
-            inventario.reporteCalificacion(calificacion);
-            break;
-        case 2:
-            cin >> genero;
-            inventario.reporteGenero(genero);
-            break;
-        case 3:
-            inventario.reporteInventario();
-            break;
-        case 4:
-            inventario.reportePeliculas();
-            break;
-        case 5:
-            inventario.reporteSeries();
-            break;
-        default:
-            cout << "Error\n";
-            break;
-    }
-}
+    cout << pelicula1.str() <<endl;
+    cout << peli.str() << endl;
 
-int main() {
-    // Declaracion de objetos
-    Polimorfismo neflix;
-    int opcion;
-
-    // leer la opcion
-    cin >> opcion;
-
-    switch (opcion) {
-        case 1:
-            neflix.leerArchivo("Inventario1.csv");
-            polimorfismo(neflix);
-            break;
-        case 2:
-            neflix.leerArchivo("Inventario2.csv");
-            polimorfismo(neflix);
-            break;
-        default:
-            cout << "incorrecta" << endl;
-    }
-
-    return 0;
+    serie1.setID("11234");
+    serie1.setTitulo("Invencible");
+    serie1.setDuracion(214);
+    serie1.setGenero("superheroes");
+    serie1.setCalificacion(90);
+    serie1.agregaEpisodio(episodio1);
+    serie1.agregaEpisodio(episodio2);
+    serie1.setCalificacion(serie1.calculaPromedio());
+    
+return 0;    
 }

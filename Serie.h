@@ -1,20 +1,33 @@
+/*
+Nombre: Jaime Hernández González
+Carrera: ITC
+Matrícula: A00840312
+Fecha: 20/05/2024
+*/
+
 #ifndef SERIE_H
 #define SERIE_H
 
 #include "Video.h"
 #include "Episodio.h"
 #include <vector>
+using namespace std;
 
 class Serie : public Video {
 private:
-    std::vector<Episodio> episodios;
-
+    Episodio episodios[5];
+    int cantidad;
 public:
-    Serie(std::string _id, std::string _nombre, int _duracion, std::string _genero, double _calificacion);
-    void agregaEpisodio(const Episodio& episodio);
+    Serie();
+    Serie(string _id, string _nombre, int _duracion, string _genero, double _calificacion);
+    void agregaEpisodio(Episodio ep);
+    void setEpisodio(int _cantidad, Episodio);
+    void setCantidad(int _cantidad);
+    Episodio getEpisodio(int _posicion);
+    int getCantidad();
+    string str();
     double calculaPromedio();
     void calculaDuracion();
-    std::string str() const override;
 };
 
 #endif

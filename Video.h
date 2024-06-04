@@ -1,22 +1,45 @@
-#ifndef VIDEO_H
-#define VIDEO_H
+/*
+Nombre: Jaime Hernández González
+Carrera: ITC
+Matrícula: A00840312
+Fecha: 20/05/2024
+*/
 
+#ifndef Video_h
+#define Video_h
+
+#include <stdio.h>
 #include <string>
+using namespace std;
 
 class Video {
 protected:
-    std::string id;
-    std::string nombre;
+    string iD;
+    string titulo;
     int duracion;
-    std::string genero;
+    string genero;
     double calificacion;
-
 public:
-    Video(std::string _id, std::string _nombre, int _duracion, std::string _genero, double _calificacion);
-    virtual std::string str() const;
-    double getCalificacion() const;
-    std::string getGenero() const;
-    virtual ~Video() = default;
+//constructores
+    Video();
+    Video(string _iD, string _titulo
+    ,int _duracion, string _genero
+    ,double _calificacion);
+//getters
+    string getID();
+    string getTitulo();
+    int getDuracion();
+    string getGenero();
+    double getCalificacion();
+//setters
+    void setID(string _iD);
+    void setTitulo(string _titulo);
+    void setDuracion(int _duracion);
+    void setGenero(string _genero);
+    void setCalificacion(double _calificacion);
+//otros metodos
+    virtual string str();
 };
+
 
 #endif
