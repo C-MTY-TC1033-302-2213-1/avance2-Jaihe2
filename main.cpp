@@ -14,11 +14,12 @@
 
 /*
 Añade por favor en cada clase este comentario con toda tu información 
-Nombre:
-Matricula:
-Carrera:
-Fecha: 
-Reflexión:
+Nombre: Pedro Valdez Flores
+Matricula: A00838331
+Carrera: IDM
+Fecha:2/6/2023
+Reflexión: Programar orientado a objetos es una forma mjuy util y organizada de crear aplicaciones, es algo tedioso seguir la metodologia
+pero el resultado es muy bueno y es facil entender donde estan los problemas
 - ¿Qué aprendí en el desarrollo de esta clase?
 */
 
