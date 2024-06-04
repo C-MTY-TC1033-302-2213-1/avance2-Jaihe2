@@ -1,9 +1,10 @@
 /*
-Nombre: Pedro Valdez Flores
-Carrera: IDM
-Matricula: A00838331
-Fecha: 20/05/2024
+Nombre: Jaime Hernández González
+Carrera: ITC
+Matrícula: A00840312
+Fecha: 02/06/2024
 */
+
 #ifndef Video_h
 #define Video_h
 

@@ -1,8 +1,26 @@
+//
+//  main.cpp
+//  Avance2 31/05/24
+//
+//  Created by Ma. Guadalupe Roque Díaz de León on 31/05/24.
+//
+
+// Clases Base - Video - con método virtual str() para Poliformismo
+// Clases Derivadas - Pelicula, Serie
+// Clase usada para composición - Episodio
+// Clase Polimorfismo -  para aplicar el polimorfismo con el método virtual y las clases derivadas
+// Arreglo de apuntadores
+
+
 /*
-Nombre: Jaime Hernández González
-Carrera: ITC
-Matrícula: A00840312
-Fecha: 20/05/2024
+Añade por favor en cada clase este comentario con toda tu información 
+Nombre: Pedro Valdez Flores
+Matricula: A00838331
+Carrera: IDM
+Fecha:2/6/2023
+Reflexión: Programar orientado a objetos es una forma mjuy util y organizada de crear aplicaciones, es algo tedioso seguir la metodologia
+pero el resultado es muy bueno y es facil entender donde estan los problemas
+- ¿Qué aprendí en el desarrollo de esta clase?
 */
 
 #include <iostream>
@@ -10,29 +28,70 @@ Fecha: 20/05/2024
 #include "Episodio.h"
 #include "Pelicula.h"
 #include "Serie.h"
+#include "Polimorfismo.h"
 
+#include <string>
 using namespace std;
 
-int main(){
-    Video video("01", "Mavericks", 90, "Deportes", 100);
-    Pelicula pelicula1("Batman", "The Dark Knight", 81, "Accion", 180, 2);
-    Pelicula peli("Simios", "Ceasear", 190, "Accion", 100, 6);
+void polimorfismo(Polimorfismo inventario){
+  // Declaración de variables locales
+ int opcion, oscares, cantidadEpisodios;
+ double calificacion;
+ string genero;
 
-    Serie serie1;
-    Episodio episodio1("1.Uno", 53, 100);
-    Episodio episodio2("2.Dos", 78, 100);
+ cin >> opcion;
 
-    cout << pelicula1.str() <<endl;
-    cout << peli.str() << endl;
+ switch (opcion) {
+     case 1:
+         cin >> calificacion;
+         inventario.reporteCalificacion(calificacion);
+         break;
 
-    serie1.setID("11234");
-    serie1.setTitulo("Invencible");
-    serie1.setDuracion(214);
-    serie1.setGenero("superheroes");
-    serie1.setCalificacion(90);
-    serie1.agregaEpisodio(episodio1);
-    serie1.agregaEpisodio(episodio2);
-    serie1.setCalificacion(serie1.calculaPromedio());
-    
-return 0;    
+     case 2:
+         cin >> genero;
+         inventario.reporteGenero(genero);
+         break;
+
+     case 3:
+         inventario.reporteInventario();
+         break;
+
+     case 4:
+         inventario.reportePeliculas();
+         break;
+
+     case 5:
+         inventario.reporteSeries();
+         break;
+
+    default:
+         cout << "Error\n";
+         break;
+    }
+}
+
+int main() {
+    // Declaracion de objetos
+    Polimorfismo neflix;
+    int opcion;
+
+    // leer la opcion
+    cin >> opcion;
+
+    switch (opcion){
+        case 1:
+           neflix.leerArchivo("Inventario1.csv");
+           polimorfismo(neflix);
+           break;
+
+        case 2:
+          neflix.leerArchivo("Inventario2.csv");
+          polimorfismo(neflix);
+          break;
+
+    default:
+          cout << "incorrecta" ;
+    }
+
+    return 0;
 }

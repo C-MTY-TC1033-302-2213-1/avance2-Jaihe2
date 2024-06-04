@@ -1,9 +1,10 @@
 /*
-Nombre: Pedro Valdez Flores
-Matricula: A00838331
-Carrera: IDM
-Fecha: 2/junio/2024 
+Nombre: Jaime Hernández González
+Carrera: ITC
+Matrícula: A00840312
+Fecha: 02/06/2024
 */
+
 #ifndef POLIMORFISMO_H
 #define POLIMORFISMO_H
 
