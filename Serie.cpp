@@ -62,7 +62,7 @@ Fecha: 20/05/2024
 
             duracion = duracionTotal; 
         }
-        string Serie::str (){
+        string Serie::str(){
             string str = Video::str() + " " + to_string(cantidad) + "\n";
             for (int index = 0; index < cantidad; index++){
             str += episodios[index].str() + "\n";

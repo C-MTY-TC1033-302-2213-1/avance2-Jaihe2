@@ -4,7 +4,6 @@ Carrera: ITC
 Matrícula: A00840312
 Fecha: 20/05/2024
 */
-
 #include "Pelicula.h"
 
 Pelicula::Pelicula():Video(){

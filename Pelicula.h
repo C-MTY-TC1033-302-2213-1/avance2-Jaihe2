@@ -5,27 +5,39 @@ Matrícula: A00840312
 Fecha: 20/05/2024
 */
 
-#ifndef Pelicula_h
-#define Pelicula_h
+#ifndef POLIMORFISMO_H
+#define POLIMORFISMO_H
+
 #include "Video.h"
+#include "Pelicula.h"
+#include "Serie.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
+#include <vector>
 using namespace std;
 
-//clase pelicula es derivada de video
-class Pelicula : public Video{
+class Polimorfismo {
 private:
-    int oscares;
+    static const int MAX_VIDEOS = 100;
+    Video* arrPtrVideos[MAX_VIDEOS];
+    int cantidad;
+    int cantidadPeliculas;
+    int cantidadSeries;
+
 public:
-//constructores
-    Pelicula();
-    Pelicula(string _iD, string _titulo
-    ,int _duracion, string _genero
-    ,double _calificacion, int _oscares);
-//getter
-    int getOscares();
-//setter
-    void setOscares(int _oscares);
-//otros metodos
-    string str();
+    Polimorfismo();
+    void setPtrVideo(int index, Video* video);
+    void setCantidad(int _cantidad);
+    Video* getPtrVideo(int index);
+    int getCantidad();
+    void leerArchivo(string nombre);
+    void reporteInventario();
+    void reporteCalificacion(double calificacion);
+    void reporteGenero(string genero);
+    void reportePeliculas();
+    void reporteSeries();
 };
+
 #endif
